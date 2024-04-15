@@ -274,6 +274,7 @@ static struct ov9282_reg_list common_regs_list = {
 #define MODE_1280_800		0
 #define MODE_1280_720		1
 #define MODE_640_400		2
+#define MODE_320_200		3
 
 #define DEFAULT_MODE		MODE_1280_720
 
@@ -370,6 +371,36 @@ static const struct ov9282_reg mode_640x400_regs[] = {
 	{0x4509, 0x80},
 };
 
+static const struct ov9282_reg mode_320x200_regs[] = {
+	{0x3778, 0x10},
+	{0x3800, 0x00},
+	{0x3801, 0x00},
+	{0x3802, 0x00},
+	{0x3803, 0x00},
+	{0x3804, 0x05},
+	{0x3805, 0x0f},
+	{0x3806, 0x03},
+	{0x3807, 0x2f},
+	{0x3808, 0x02},
+	{0x3809, 0x80},
+	{0x380a, 0x01},
+	{0x380b, 0x90},
+	{0x3810, 0x00},
+	{0x3811, 0x04},
+	{0x3812, 0x00},
+	{0x3813, 0x04},
+	{0x3814, 0x31},
+	{0x3815, 0x22},
+	{0x3820, 0x60},
+	{0x3821, 0x01},
+	{0x4008, 0x02},
+	{0x4009, 0x05},
+	{0x400c, 0x00},
+	{0x400d, 0x03},
+	{0x4507, 0x03},
+	{0x4509, 0x80},
+};
+
 /* Supported sensor mode configurations */
 static const struct ov9282_mode supported_modes[] = {
 	[MODE_1280_800] = {
@@ -427,6 +458,25 @@ static const struct ov9282_mode supported_modes[] = {
 			.top = OV9282_PIXEL_ARRAY_TOP,
 			.width = 1280,
 			.height = 800
+		},
+		.reg_list = {
+			.num_of_regs = ARRAY_SIZE(mode_640x400_regs),
+			.regs = mode_640x400_regs,
+		},
+	},
+	[MODE_320_200] = {
+		.width = 320,
+		.height = 200,
+		.hblank_min = { 890, 816 },
+		.vblank = 1022,
+		.vblank_min = 22,
+		.vblank_max = 51540,
+		.link_freq_idx = 0,
+		.crop = {
+			.left = OV9282_PIXEL_ARRAY_LEFT,
+			.top = OV9282_PIXEL_ARRAY_TOP,
+			.width = 320,
+			.height = 200
 		},
 		.reg_list = {
 			.num_of_regs = ARRAY_SIZE(mode_640x400_regs),
