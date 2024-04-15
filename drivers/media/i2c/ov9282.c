@@ -475,8 +475,8 @@ static const struct ov9282_mode supported_modes[] = {
 		.crop = {
 			.left = OV9282_PIXEL_ARRAY_LEFT,
 			.top = OV9282_PIXEL_ARRAY_TOP,
-			.width = 320,
-			.height = 200
+			.width = 640,
+			.height = 400
 		},
 		.reg_list = {
 			.num_of_regs = ARRAY_SIZE(mode_640x400_regs),
